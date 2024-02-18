@@ -4,12 +4,13 @@ import 'package:get/get.dart';
 import 'auth_controller.dart';
 
 void main() {
-  // Step 2: Initialize the AuthController
   Get.put(AuthController());
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -22,14 +23,14 @@ class MyApp extends StatelessWidget {
 void showErrorDialog(String message) {
   Get.dialog(
     AlertDialog(
-      title: Text("Error"),
+      title: const Text("Error"),
       content: Text(message),
       actions: [
         TextButton(
           onPressed: () {
             Get.back(); // Close the dialog
           },
-          child: Text("OK"),
+          child: const Text("OK"),
         ),
       ],
     ),
@@ -43,33 +44,32 @@ class AuthenticationScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  AuthenticationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('GetX Auth')),
+      appBar: AppBar(title: const Text('GetX Auth')),
       body: Center(
         child: Obx(() {
-          // If there's an error, show the dialog
           if (authController.error.value != null) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               showErrorDialog(authController.error.value.toString());
             });
           }
-      
-          // Loading State
           if (authController.isLoading.value) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
           // Logged In State
           else if (authController.isLoggedIn.value) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text("Welcome! You are logged in."),
-                SizedBox(height: 20),
+                const Text("Welcome! You are logged in."),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () => authController.logout(),
-                  child: Text("Logout"),
+                  child: const Text("Logout"),
                 ),
               ],
             );
@@ -81,18 +81,18 @@ class AuthenticationScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: emailController,
-                  decoration: InputDecoration(labelText: 'Email'),
+                  decoration: const InputDecoration(labelText: 'Email'),
                 ),
                 TextField(
                   controller: passwordController,
-                  decoration: InputDecoration(labelText: 'Password'),
+                  decoration: const InputDecoration(labelText: 'Password'),
                   obscureText: true,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () => authController.login(
                       emailController.text, passwordController.text),
-                  child: Text("Login"),
+                  child: const Text("Login"),
                 ),
               ],
             );
@@ -105,7 +105,7 @@ class AuthenticationScreen extends StatelessWidget {
   void showErrorDialog(String message) {
     Get.dialog(
       AlertDialog(
-        title: Text("Error"),
+        title: const Text("Error"),
         content: Text(message),
         actions: [
           TextButton(
@@ -113,7 +113,7 @@ class AuthenticationScreen extends StatelessWidget {
               authController.error.value = null; // Clear the error
               Get.back(); // Close the dialog
             },
-            child: Text("OK"),
+            child: const Text("OK"),
           ),
         ],
       ),

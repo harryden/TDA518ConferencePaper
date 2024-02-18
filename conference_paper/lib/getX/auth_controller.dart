@@ -1,7 +1,7 @@
-import 'package:conference_paper/auth_user.dart';
 import 'package:get/get.dart';
 
 import '../auth_service.dart';
+
 
 class AuthController extends GetxController {
   var authService = AuthService();
@@ -11,7 +11,6 @@ class AuthController extends GetxController {
 
   var error = Rxn<dynamic>();
 
-  //TODO: should it return a user object?
   Future<void> login(String email, String password) async {
     error.value = null;
     isLoading.value = true;

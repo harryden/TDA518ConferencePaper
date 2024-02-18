@@ -35,7 +35,6 @@ abstract class AuthenticationEvent {}
 class AuthenticationLogin extends AuthenticationEvent {
   final String email;
   final String password;
-
   AuthenticationLogin(this.email, this.password);
 }
 
