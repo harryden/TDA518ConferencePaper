@@ -1,14 +1,8 @@
-import 'dart:developer';
-
 import 'package:conference_paper/BLoC/auth_bloc.dart';
-import 'package:conference_paper/getX/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 void main() {
-  // Step 2: Initialize the AuthController
-  Get.put(AuthController());
   runApp(MyApp());
 }
 
