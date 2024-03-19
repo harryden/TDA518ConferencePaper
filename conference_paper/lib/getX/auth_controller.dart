@@ -5,9 +5,10 @@ import '../auth_service.dart';
 
 class AuthController extends GetxController {
   var authService = AuthService();
-
+  // Observable variables to hold authentication state
   var isLoggedIn = false.obs;
   var isLoading = false.obs;
+
   var error = Rxn<dynamic>();
 
   Future<void> login(String email, String password) async {
